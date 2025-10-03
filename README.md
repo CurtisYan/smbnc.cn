@@ -1,6 +1,8 @@
 # smbnc.cn - 什么不能吃 APP 官网
 
 这是什么不能吃APP的官方网站，提供食材相克查询功能的介绍和下载链接。
+![](https://curtisyan.oss-cn-shenzhen.aliyuncs.com/img/no_important/202510031111758.png)
+![](https://curtisyan.oss-cn-shenzhen.aliyuncs.com/img/no_important/202510031112693.png)
 
 ## 功能特点
 
