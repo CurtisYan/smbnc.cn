@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <title>什么不能吃 - 食材相克查询APP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#ff8c00',
+                            dark: '#ff9d28',
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 检查用户是否已经设置了主题偏好
+        function setThemePreference() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            const html = document.documentElement;
+            
+            if (isDarkMode) {
+                html.classList.add('dark');
+                html.classList.remove('light');
+                document.getElementById('theme-toggle').checked = true;
+                document.getElementById('app-icon').src = "icons/dark-icon.png";
+            } else {
+                html.classList.add('light');
+                html.classList.remove('dark');
+                document.getElementById('theme-toggle').checked = false;
+                document.getElementById('app-icon').src = "icons/light-icon.png";
+            }
+        }
+        
+        // 切换主题
+        function toggleTheme() {
+            const isDarkMode = document.documentElement.classList.contains('dark');
+            localStorage.setItem('darkMode', !isDarkMode);
+            
+            if (isDarkMode) {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                document.getElementById('app-icon').src = "icons/light-icon.png";
+            } else {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                document.getElementById('app-icon').src = "icons/dark-icon.png";
+            }
+        }
+        
+        // 页面加载完成后设置主题
+        document.addEventListener('DOMContentLoaded', setThemePreference);
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- 主题切换开关 -->
+        <div class="flex justify-end mb-4">
+            <div class="flex items-center">
+                <span class="mr-2 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="theme-toggle" class="sr-only peer" onchange="toggleTheme()">
+                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                </label>
+                <span class="ml-2 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+        
+        <h1 class="text-4xl font-bold text-center text-primary-light dark:text-primary-dark mb-8">什么不能吃</h1>
+        
+        <div class="flex justify-center mb-8">
+            <img id="app-icon" src="icons/light-icon.png" alt="APP图标" class="w-32 h-32 rounded-[20px] shadow-lg">
+        </div>
+        
+        <div class="text-center mb-12">
+            <a href="https://apps.apple.com/app/id6476312117" class="inline-block bg-primary-light dark:bg-primary-dark text-white font-bold py-3 px-6 rounded-full hover:opacity-90 transition-opacity">App Store下载</a>
+        </div>
+        
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-semibold mb-4">关于APP</h2>
+            <p>「什么不能吃」是一款专注于食材搭配的APP，帮助用户了解哪些食材不宜一起食用，从而避免食物相克带来的健康风险。</p>
+        </div>
+        
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-semibold mb-6">主要功能</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="feature">
+                    <h3 class="text-xl font-medium text-primary-light dark:text-primary-dark mb-2">食材相克查询</h3>
+                    <p>输入两种或多种食材，快速查询它们是否适合一起食用</p>
+                </div>
+                <div class="feature">
+                    <h3 class="text-xl font-medium text-primary-light dark:text-primary-dark mb-2">AI分析</h3>
+                    <p>利用先进AI技术，深入分析食材成分，提供专业的搭配建议</p>
+                </div>
+                <div class="feature">
+                    <h3 class="text-xl font-medium text-primary-light dark:text-primary-dark mb-2">历史记录</h3>
+                    <p>自动保存查询历史，方便随时查看之前的分析结果</p>
+                </div>
+                <div class="feature">
+                    <h3 class="text-xl font-medium text-primary-light dark:text-primary-dark mb-2">无需注册</h3>
+                    <p>简洁易用，无需注册即可使用全部功能</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="text-center text-gray-500 dark:text-gray-400 mt-12">
+            <p>© 2025 什么不能吃 | 联系邮箱: <a href="mailto:realthat@foxmail.com" class="hover:text-primary-light dark:hover:text-primary-dark">realthat@foxmail.com</a></p>
+                    <p class="mt-2"><a href="https://beian.miit.gov.cn/" target="_blank" class="hover:text-primary-light dark:hover:text-primary-dark">蜀ICP备2024076725号-3</a></p>
+        </footer>
+    </div>
+</body>
+</html> 
